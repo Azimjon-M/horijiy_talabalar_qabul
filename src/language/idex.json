@@ -1,0 +1,17 @@
+{
+    "uz": {
+        "navHome": "Asosiy",
+        "navArizaYuborish": "Ariza yuborish",
+        "navLogoContent": "Qo'qon davlat pedagogigaka instituti"
+    },
+    "ru": {
+        "navHome": "Дом",
+        "navArizaYuborish": "Подавать заявление",
+        "navLogoContent": "Коканский государственный педагогический институт"
+    },
+    "en": {
+        "navHome": "Home",
+        "navArizaYuborish": "Submit an application",
+        "navLogoContent": "Kokan State Pedagogical Institute"
+    }
+}

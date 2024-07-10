@@ -1,57 +1,47 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { Container } from "./style";
-import navbar from "../utils/navbar";
-import { Sidebar } from "../components/Sidebar";
+import { Route, Routes } from "react-router-dom";
+import routItems from "../utils/routes";
+import Navbar from "../components/Navbar";
+import Saidbar from "../components/Saidbar";
+import Login from "../views/Login";
 
 export const Root = () => {
     return (
-        <Container>
+        <div>
             <Routes>
-                <Route element={<Sidebar />}>
-                    {navbar.map((parent) => {
-                        const ElementParent = parent.element;
-                        if (parent?.children) {
-                            return parent.children.map((child) => {
-                                const ElementChild = child.element;
-                                return (
-                                    <Route
-                                        key={child.id}
-                                        path={child.path}
-                                        element={<ElementChild />}
-                                    />
-                                );
-                            });
-                        } else
-                            return (
-                                !parent.hidden && (
-                                    <Route
-                                        key={parent.id}
-                                        path={parent.path}
-                                        element={<ElementParent />}
-                                    />
-                                )
-                            );
+                {/* USER */}
+                <Route element={<Navbar />}>
+                    {routItems.map((routeItem) => {
+                        const ElementParent = routeItem.element;
+                        return (
+                            !routeItem.hidden && (
+                                <Route
+                                    key={routeItem.id}
+                                    path={routeItem.path}
+                                    element={<ElementParent />}
+                                />
+                            )
+                        );
                     })}
                 </Route>
-                
-                {/*  */}
-                {navbar.map((parent) => {
-                    const ElementParent = parent.element;
-                    return (
-                        parent.hidden && (
-                            <Route
-                                key={parent.id}
-                                path={parent.path}
-                                element={<ElementParent />}
-                            />
-                        )
-                    );
-                })}
-
-                <Route path="/" element={<Navigate to={"/login"} />} />
+                {/* ADMIN */}
+                <Route element={<Saidbar />}>
+                    {routItems.map((routeItem) => {
+                        const ElementParent = routeItem.element;
+                        return (
+                            routeItem.hidden && (
+                                <Route
+                                    key={routeItem.id}
+                                    path={routeItem.path}
+                                    element={<ElementParent />}
+                                />
+                            )
+                        );
+                    })}
+                </Route>
+                <Route element={<Login />} path="/login" />
                 <Route path="*" element={<h1>404 not found</h1>} />
             </Routes>
-        </Container>
+        </div>
     );
 };
 

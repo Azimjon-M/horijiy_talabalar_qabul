@@ -3,6 +3,7 @@ import routItems from "../utils/routes";
 import Navbar from "../components/Navbar";
 import Saidbar from "../components/Saidbar";
 import Login from "../views/Login";
+import NotFoundPage from "../views/NotFoundPage";
 
 export const Root = () => {
     return (
@@ -13,7 +14,7 @@ export const Root = () => {
                     {routItems.map((routeItem) => {
                         const ElementParent = routeItem.element;
                         return (
-                            !routeItem.hidden && (
+                            !routeItem.isPrivate && (
                                 <Route
                                     key={routeItem.id}
                                     path={routeItem.path}
@@ -39,7 +40,7 @@ export const Root = () => {
                     })}
                 </Route>
                 <Route element={<Login />} path="/login" />
-                <Route path="*" element={<h1>404 not found</h1>} />
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </div>
     );

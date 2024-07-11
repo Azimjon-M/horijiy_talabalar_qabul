@@ -1,8 +1,8 @@
 // USER
 import Main from "../views/Main";
 import ArizaYuborish from "../views/ArizaYuborish"
-// import Login from '../views/Login';
 import AdminPanel from '../views/AdminPanel'
+import Author from "../views/Author";
 
 const routes = [
     {
@@ -33,14 +33,15 @@ const routes = [
         element: AdminPanel,
         role: 'admin'
     },
-    // {
-    //     id: ,
-    //     title_id: "",
-    //     path: '',
-    //     isPrivate: ,
-    //     element: ,
-    //     role: ''
-    // },
+    {
+        id: 5,
+        title_id: "Author",
+        path: 'authors',
+        isPrivate: false,
+        hidden: false,
+        element: Author,
+        role: 'user'
+    },
 ];
 
 export default routes;

@@ -16,10 +16,6 @@ const Navbar = () => {
 
     const dropdownRef = useRef(null);
 
-    // const toggleDropdown = () => {
-    //     setTogglerMenu(!togglerMenu);
-    // };
-
     const handleClickOutside = (event) => {
         if (
             dropdownRef.current &&
@@ -70,8 +66,8 @@ const Navbar = () => {
 
     return (
         <div className="z-20">
-            <div className="w-full h-[80px] lg:h-[90px] flex items-center justify-between">
-                <ul className="md:w-full px-4 md:px-10 py-6 bg-cyan-50">
+            <div className="w-full h-[80px] lg:h-[90px] flex items-center justify-between sticky top-0 left-0 z-30">
+                <ul className="md:w-full h-full flex items-center bg-cyan-50 ps-4 md:ps-6 lg:ps-12">
                     <li>
                         <NavLink to={`/`} className="flex items-center gap-3">
                             <img
@@ -85,7 +81,7 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                 </ul>
-                <ul className="w-full flex justify-end items-center gap-4 lg:gap-10 lg:text-[18px] font-medium px-4 md:px-10 py-6 bg-cyan-50">
+                <ul className="w-full h-full flex justify-end items-center gap-4 lg:gap-10 lg:text-[18px] font-medium px-4 md:px-10 py-6 bg-cyan-50">
                     <li ref={dropdownRef} className="relative font-medium">
                         <div>
                             <button
@@ -160,11 +156,6 @@ const Navbar = () => {
                                 </li>
                             </button>
                         </div>
-                        {/* <select onChange={onChange} className="select select-sm lg:select-md select-bordered w-full max-w-xs min-w-xs bg-cyan-50" >
-                            <option className="bg-white" value="uz">Uzb</option>
-                            <option className="bg-white" value="ru">Rus</option>s
-                            <option className="bg-white" value="en">Eng</option>
-                        </select> */}
                     </li>
                     {routes.map((route) => {
                         return (
@@ -176,7 +167,7 @@ const Navbar = () => {
                                                 route.isBtn
                                                     ? "btn btn-success btn-sm lg:btn-md lg:text-[18px] text-white"
                                                     : isActive &&
-                                                      "underline decoration-2 underline-offset-2"
+                                                        "underline decoration-2 underline-offset-2"
                                             }`
                                         }
                                         to={route.path}

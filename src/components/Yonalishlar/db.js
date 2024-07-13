@@ -104,3 +104,10 @@ export const dataBakalavr = [
         title_id: "homYonalishBak_26",
     },
 ];
+
+export const dataMagistr = [
+    {
+        id: 1,
+        title_id: "homYonalishBak_7"
+    }
+]

@@ -21,7 +21,7 @@
         "homYonalishBak_8": "Biologiya",
         "homYonalishBak_9": "Geografiya va Iqtisodiy bilimlar asoslari",
         "homYonalishBak_10": "Tarix",
-        "homYonalishBak_11": "Изобразительное искусство и инженерная графикаTasniriy san'at va Muhandislik grafikasi",
+        "homYonalishBak_11": "Tasniriy san'at va Muhandislik grafikasi",
         "homYonalishBak_12": "Musiqa ta'limi",
         "homYonalishBak_13": "",
         "homYonalishBak_14": "",
@@ -44,8 +44,14 @@
         "notFoundPageTitle_2": "Asosiy saxifaga o'tishni istaysizmi?",
         "arizaIsm": "Ism",
         "arizaFaliliya": "Familiya",
+        "arizaSharif": "Sharif",
         "arizaFuqaro": "Fuqaroligi",
-        "arizaOxirgiTalim": "Ta'lim ma'lumotlari (oxirgi)"
+        "arizaPassport": "Pasport",
+        "arizaDiplom": "Diplom",
+        "arizaOxirgiTalim": "Ta'lim ma'lumotlari (oxirgi)",
+        "arizaTel": "Telefon no'mer",
+        "arizaBtn": "Yubor",
+        "arizaSuccess": "Muvaffaqiyat yubordingiz!"
     },
     "ru": {
         "navHome": "Дом",
@@ -92,8 +98,14 @@
         "notFoundPageTitle_2": "Хотите перейти на главную страницу?",
         "arizaIsm": "Имя",
         "arizaFaliliya": "Фамилия",
+        "arizaSharif": "",
         "arizaFuqaro": "Гражданство",
-        "arizaOxirgiTalim": "Подробности об образовании (последние)"
+        "arizaPassport": "",
+        "arizaDiplom": "",
+        "arizaOxirgiTalim": "Подробности об образовании (последние)",
+        "arizaTel": "",
+        "arizaBtn": "Отправлять",
+        "arizaSuccess": "Вы послали успех!"
     },
     "en": {
         "navHome": "Home",
@@ -140,7 +152,13 @@
         "notFoundPageTitle_2": "Do you want to go to the Main page?",
         "arizaIsm": "Name",
         "arizaFaliliya": "Surname",
+        "arizaSharif": "",
         "arizaFuqaro": "Citizenship",
-        "arizaOxirgiTalim": "Education details (latest)"
+        "arizaPassport": "",
+        "arizaDiplom": "",
+        "arizaOxirgiTalim": "Education details (latest)",
+        "arizaTel": "",
+        "arizaBtn": "Send",
+        "arizaSuccess": "You sent success!"
     }
 }

@@ -1,9 +1,9 @@
-import axiosInstanse from "./index";
+import axiosInstance from "./index";
 
 const ep = "api/token/";
 
 const post = (item) => {
-    return axiosInstanse.post(ep, item);
+    return axiosInstance.post(ep, item);
 };
 
 const APILogin = { post };

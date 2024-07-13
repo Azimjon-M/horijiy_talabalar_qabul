@@ -16,23 +16,18 @@ const Login = () => {
             password: "",
         },
         onSubmit: async (values) => {
-            const res = await APILogin.post(values);
-            console.log("Response: ", res);
-            console.log(values);
-
-            // if (!err) {
-            //     if (
-            //         values.username === username &&
-            //         values.password === password
-            //     ) {
-            //         navigate("/admin-panel");
-            //     } else {
-            //         setErr(true);
-            //         setTimeout(() => {
-            //             setErr(false);
-            //         }, 3000);
-            //     }
-            // }
+            try {
+                const res = await APILogin.post(values);
+                if (res.status === 200 && res.statusText === "OK") {
+                    localStorage.setItem("token", res?.data?.access)
+                    navigate('/admin-panel')
+                }
+            } catch {
+                setErr(true);
+                setTimeout(() => {
+                    setErr(false);
+                }, 3000);
+            }
         },
     });
 

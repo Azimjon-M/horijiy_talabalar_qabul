@@ -167,7 +167,7 @@ const Navbar = () => {
                                                 route.isBtn
                                                     ? "btn btn-success btn-sm lg:btn-md lg:text-[18px] text-white"
                                                     : isActive &&
-                                                        "underline decoration-2 underline-offset-2"
+                                                      "underline decoration-2 underline-offset-2"
                                             }`
                                         }
                                         to={route.path}

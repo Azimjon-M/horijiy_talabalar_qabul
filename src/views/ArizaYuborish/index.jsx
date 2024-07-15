@@ -33,14 +33,6 @@ const ArizaYuborish = () => {
             .max(50, "Too Long!")
             .required("Required"),
         email: Yup.string().email("Invalid email").required("Required"),
-        telegram_name: Yup.string()
-            .min(3, "Too Short!")
-            .max(50, "Too Long!")
-            .required("Required"),
-        whatsapp_name: Yup.string()
-            .min(3, "Too Short!")
-            .max(50, "Too Long!")
-            .required("Required"),
         telefon_nomer: Yup.string()
             .min(3, "Too Short!")
             .max(50, "Too Long!")
@@ -57,9 +49,6 @@ const ArizaYuborish = () => {
             email: "",
             telegram_name: "",
             whatsapp_name: "",
-
-            // pasport: "",
-            // diplom: "",
             telefon_nomer: "",
         },
         validationSchema: SignupSchema,
@@ -67,21 +56,21 @@ const ArizaYuborish = () => {
             values.whatsapp_name = String(values.whatsapp_name);
             !filePas ? setErrPas(true) : setErrPas(false);
             !fileDip ? setErrDip(true) : setErrDip(false);
-
             const res = { ...values, pasport: filePas, diplom: fileDip };
             console.log(res);
-            // try {
-            //     setSuccess(true);
-            //     await APIPostAriza.post(values).then(() => {
-            //         setTimeout(() => {
-            //             setSuccess(false);
-            //         }, 5000);
-            //     });
-            //     formik.resetForm();
-            // } catch (err) {
-            //     console.log(err);
-            // }
-            // console.log(values);
+            if (filePas && fileDip) {
+                try {
+                    // setSuccess(true);
+                    await APIPostAriza.post(res);
+                    formik.resetForm();
+                    fileRefPas.current.value = "";
+                    fileRefDip.current.value = "";
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                console.log("fayllar yetib kelmagan");
+            }
         },
     });
 
@@ -257,7 +246,6 @@ const ArizaYuborish = () => {
                                 value={formik.values.tugatgan_oligoh}
                             />
                         </label>
-
                         {/* Tel */}
                         <label className="form-control w-full">
                             <div className="label">
@@ -298,14 +286,11 @@ const ArizaYuborish = () => {
                         <label className="form-control w-full">
                             <div className="label">
                                 <span className="label-text">
-                                    Telegram username/number
+                                    <TextTranslate id={`arizaTg`} />
                                 </span>
                             </div>
                             <input
-                                className={`${
-                                    formik.errors.telegram_name &&
-                                    "border border-red-600"
-                                } input input-bordered w-full`}
+                                className={`input input-bordered w-full`}
                                 id="telegram_name"
                                 name="telegram_name"
                                 type="text"
@@ -316,14 +301,13 @@ const ArizaYuborish = () => {
                         {/* WatsApp */}
                         <label className="form-control w-full">
                             <div className="label">
-                                <span className="label-text">WatsApp</span>
+                                <span className="label-text">
+                                    <TextTranslate id={`arizaWatsApp`} />
+                                </span>
                             </div>
                             <div className="w-full join">
                                 <input
-                                    className={`${
-                                        formik.errors.telegram_name &&
-                                        "border border-red-600"
-                                    } "w-full input input-bordered join-item"`}
+                                    className={`input input-bordered w-full`}
                                     id="whatsapp_name"
                                     name="whatsapp_name"
                                     type="number"

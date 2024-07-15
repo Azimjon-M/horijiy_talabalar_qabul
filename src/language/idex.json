@@ -136,7 +136,7 @@
         "arizaTg": "Имя пользователя/номер Telegram (необязательно)",
         "arizaWatsApp": "WatsApp (по желанию)",
         "arizaBtn": "Отправлять",
-        "arizaSuccess": "Вы послали успех!",
+        "arizaSuccess": "Вы отправили успех!",
         "arizaSuccessContetnt": "Мы скоро свяжемся с вами"
     },
     "en": {
@@ -206,7 +206,7 @@
         "arizaTg": "Telegram username/number (optional)",
         "arizaWatsApp": "WatsApp (optional)",
         "arizaBtn": "Send",
-        "arizaSuccess": "You sent success!",
+        "arizaSuccess": "You have sent success!",
         "arizaSuccessContetnt": "We will contact you soon"
     }
 }

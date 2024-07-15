@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { FiMenu, FiLogOut } from "react-icons/fi";
 import "./style.css";
 
@@ -12,7 +12,7 @@ const Saidbar = () => {
     };
     const onLogout = () => {
         localStorage.removeItem("token");
-        navigate("/");
+        navigate("/login");
     };
 
     return (
@@ -36,28 +36,12 @@ const Saidbar = () => {
                     </div>
                     <ul className={`${menu && "hidden"} p-4`}>
                         <li className="my-2">
-                            <NavLink
-                                className={({ isActive }) =>
-                                    `${
-                                        isActive && "underline decoration-2"
-                                    } text-[18px] font-medium underline-offset-2`
-                                }
+                            <Link
+                                className={` text-[18px] font-medium underline-offset-2`}
                                 to={`admin-panel`}
                             >
                                 Arizalar
-                            </NavLink>
-                        </li>
-                        <li className="my-2">
-                            <NavLink
-                                className={({ isActive }) =>
-                                    `${
-                                        isActive && "underline decoration-2"
-                                    } text-[18px] font-medium underline-offset-2`
-                                }
-                                to={`/ariza-qollanma`}
-                            >
-                                Arizalar qo'llanmasi
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </div>

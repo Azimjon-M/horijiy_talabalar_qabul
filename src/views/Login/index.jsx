@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import APILogin from "../../servises/login";
 
 const Login = () => {
+    const token = localStorage.getItem("token");
+    const dates = localStorage.getItem("dates");
+
     const navigate = useNavigate();
-    // const [{ username, password }] = [
-    //     { username: "admin", password: "admin123" },
-    // ];
     const [err, setErr] = useState(false);
 
     const formik = useFormik({
@@ -19,8 +19,10 @@ const Login = () => {
             try {
                 const res = await APILogin.post(values);
                 if (res.status === 200 && res.statusText === "OK") {
-                    localStorage.setItem("token", res?.data?.access)
-                    navigate('/admin-panel')
+                    localStorage.setItem("token", res?.data?.access);
+                    const dates = JSON.stringify(values);
+                    localStorage.setItem("dates", dates);
+                    navigate("/admin-panel");
                 }
             } catch {
                 setErr(true);
@@ -30,6 +32,12 @@ const Login = () => {
             }
         },
     });
+
+    if (token && dates) {
+        const { username, password } = JSON.parse(dates);
+        formik.values.username = username;
+        formik.values.password = password;
+    }
 
     return (
         <div className="w-full h-[100vh] flex justify-center items-center">

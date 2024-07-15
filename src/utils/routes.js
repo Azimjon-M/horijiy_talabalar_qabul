@@ -3,7 +3,6 @@ import Main from "../views/Main";
 import ArizaYuborish from "../views/ArizaYuborish";
 import AdminPanel from "../views/AdminPanel";
 import Author from "../views/Author";
-import AdminAziraQollanma from "../views/AdminAziraQollanma";
 
 const routes = [
     {
@@ -42,15 +41,6 @@ const routes = [
         element: AdminPanel,
         role: "admin",
     },
-    {
-        id: 5,
-        path: "/ariza-qollanma",
-        isPrivate: true,
-        hidden: true,
-        element: AdminAziraQollanma,
-        role: "admin"
-
-    }
 ];
 
 export default routes;

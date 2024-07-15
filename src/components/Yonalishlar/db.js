@@ -108,6 +108,66 @@ export const dataBakalavr = [
 export const dataMagistr = [
     {
         id: 1,
-        title_id: "homYonalishBak_7"
-    }
+        title_id: "homYonalishMag_1"
+    },
+    {
+        id: 2,
+        title_id: "homYonalishMag_2"
+    },
+    {
+        id: 3,
+        title_id: "homYonalishMag_3"
+    },
+    {
+        id: 4,
+        title_id: "homYonalishMag_4"
+    },
+    {
+        id: 5,
+        title_id: "homYonalishMag_5"
+    },
+    {
+        id: 6,
+        title_id: "homYonalishMag_6"
+    },
+    {
+        id: 7,
+        title_id: "homYonalishMag_7"
+    },
+    {
+        id: 8,
+        title_id: "homYonalishMag_8"
+    },
+    {
+        id: 9,
+        title_id: "homYonalishMag_9"
+    },
+    {
+        id: 10,
+        title_id: "homYonalishMag_10"
+    },
+    {
+        id: 11,
+        title_id: "homYonalishMag_11"
+    },
+    {
+        id: 12,
+        title_id: "homYonalishMag_12"
+    },
+    {
+        id: 13,
+        title_id: "homYonalishMag_13"
+    },
+    {
+        id: 14,
+        title_id: "homYonalishMag_14"
+    },
+    {
+        id: 15,
+        title_id: "homYonalishMag_15"
+    },
+    {
+        id: 16,
+        title_id: "homYonalishMag_16"
+    },
 ]

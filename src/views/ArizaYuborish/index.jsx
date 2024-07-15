@@ -60,7 +60,7 @@ const ArizaYuborish = () => {
             console.log(res);
             if (filePas && fileDip) {
                 try {
-                    // setSuccess(true);
+                    setSuccess(true);
                     await APIPostAriza.post(res);
                     formik.resetForm();
                     fileRefPas.current.value = "";
@@ -74,44 +74,26 @@ const ArizaYuborish = () => {
         },
     });
 
-    // files
-    // // Post
-    // if (file) {
-    //     if (data?.length === 0) {
-    //         APIArizaQollanma.post({ file: file }).then(() => {
-    //             fileRef.current.value = "";
-    //             getData();
-    //         });
-    //     }
-    //     // Put
-    //     else {
-    //         APIArizaQollanma.put(data[0]?.id, { file: file }).then(() => {
-    //             fileRef.current.value = "";
-    //             getData();
-    //         });
-    //     }
-    // } else {
-    //     setErr(true);
-    //     setTimeout(() => {
-    //         setErr(false);
-    //     }, 2000);
-    // }
-
     const handleChangePas = (e) => {
         setFilePas(e.target.files[0]);
+        setErrPas(false);
     };
 
     const handleChangeDip = (e) => {
         setFileDip(e.target.files[0]);
+        setErrDip(false);
     };
 
     return (
         <div className="flex flex-col items-center justify-center">
             {success ? (
-                <div className="w-full h-[90vh] flex items-center justify-center">
+                <div className="w-full h-[90vh] flex flex-col items-center justify-center">
                     <h1 className="text-center text-[30px] md:text-[35px] lg:text-[40px] xl:text-[50px] 2xl:text-[60px] font-bold text-green-500">
                         <TextTranslate id={`arizaSuccess`} />
                     </h1>
+                    <p className="flex text-[20px] md:text-[22px] lg:text-[34px] xl:text-[26px] 2xl:text-[30px] font-medium">
+                        <TextTranslate id={`arizaSuccessContetnt`} /> 😊
+                    </p>
                 </div>
             ) : (
                 <div className="shadow-2xl py-8 px-10 rounded-lg mt-10 mb-20">

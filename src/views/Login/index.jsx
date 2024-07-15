@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import APILogin from "../../servises/login";
 
 const Login = () => {
-    const token = localStorage.getItem("token");
     const dates = localStorage.getItem("dates");
 
     const navigate = useNavigate();
@@ -33,7 +32,7 @@ const Login = () => {
         },
     });
 
-    if (token && dates) {
+    if (dates) {
         const { username, password } = JSON.parse(dates);
         formik.values.username = username;
         formik.values.password = password;

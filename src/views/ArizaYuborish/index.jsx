@@ -57,19 +57,12 @@ const ArizaYuborish = () => {
             !filePas ? setErrPas(true) : setErrPas(false);
             !fileDip ? setErrDip(true) : setErrDip(false);
             const res = { ...values, pasport: filePas, diplom: fileDip };
-            console.log(res);
             if (filePas && fileDip) {
-                try {
-                    setSuccess(true);
-                    await APIPostAriza.post(res);
-                    formik.resetForm();
-                    fileRefPas.current.value = "";
-                    fileRefDip.current.value = "";
-                } catch (err) {
-                    console.log(err);
-                }
-            } else {
-                console.log("fayllar yetib kelmagan");
+                setSuccess(true);
+                await APIPostAriza.post(res);
+                formik.resetForm();
+                fileRefPas.current.value = "";
+                fileRefDip.current.value = "";
             }
         },
     });
@@ -88,12 +81,12 @@ const ArizaYuborish = () => {
         <div className="flex flex-col items-center justify-center">
             {success ? (
                 <div className="w-full h-[90vh] flex flex-col items-center justify-center">
-                    <h1 className="text-center text-[30px] md:text-[35px] lg:text-[40px] xl:text-[50px] 2xl:text-[60px] font-bold text-green-500">
+                    <div className="text-center text-[30px] md:text-[35px] lg:text-[40px] xl:text-[50px] 2xl:text-[60px] font-bold text-green-500">
                         <TextTranslate id={`arizaSuccess`} />
-                    </h1>
-                    <p className="flex text-[20px] md:text-[22px] lg:text-[34px] xl:text-[26px] 2xl:text-[30px] font-medium">
+                    </div>
+                    <div className="flex text-[20px] md:text-[22px] lg:text-[34px] xl:text-[26px] 2xl:text-[30px] font-medium">
                         <TextTranslate id={`arizaSuccessContetnt`} /> 😊
-                    </p>
+                    </div>
                 </div>
             ) : (
                 <div className="shadow-2xl py-8 px-10 rounded-lg mt-10 mb-20">

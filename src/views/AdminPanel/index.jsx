@@ -20,8 +20,6 @@ const AdminPanel = () => {
                     return new Date(b.vaqt) - new Date(a.vaqt);
                 });
                 setData(sortedData);
-                console.log(res.data);
-                console.log(sortedData);
             });
         } catch (err) {
             console.log(err);

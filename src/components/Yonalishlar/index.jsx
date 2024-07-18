@@ -20,7 +20,7 @@ const Yonalishlar = () => {
         <div className="lg:py-10 sm:py-5">
             <div>
                 <h1 className="text-center text-[18px] lg:text-[24px] font-medium py-5">
-                    <TextTranslate id={`homYonalishTitle`} />
+                    <TextTranslate id={`homYonalishBakTitle`} />
                 </h1>
                 <div className="flex flex-col items-center justify-center px-4 lg:p-0">
                     <div
@@ -43,7 +43,17 @@ const Yonalishlar = () => {
                                     <th></th>
                                     <th>
                                         <TextTranslate
-                                            id={`homYonalishBakTitle`}
+                                            id={`homYonalishTitle`}
+                                        />
+                                    </th>
+                                    <th>
+                                        <TextTranslate
+                                            id={`homYonalishShartnoma`}
+                                        />
+                                    </th>
+                                    <th>
+                                        <TextTranslate
+                                            id={`homYonalishShartnoma_2`}
                                         />
                                     </th>
                                 </tr>
@@ -55,6 +65,8 @@ const Yonalishlar = () => {
                                         <td>
                                             <TextTranslate id={item.title_id} />
                                         </td>
+                                        <td>{item.tolovUZS}</td>
+                                        <td>~{item.tolovUSD}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -62,7 +74,10 @@ const Yonalishlar = () => {
                     </div>
                     <br />
                     <br />
-                    {/* id={`homYonalishMagTitle`} */}
+                    <h1 className="text-center text-[18px] lg:text-[24px] font-medium py-5">
+                        {/* <TextTranslate id={`homYonalishTitle`} /> */}
+                        <TextTranslate id={`homYonalishMagTitle`} />
+                    </h1>
                     <div
                         className={`${
                             height2 ? "max-h-[2000px]" : "h-[265px]"
@@ -83,7 +98,17 @@ const Yonalishlar = () => {
                                     <th></th>
                                     <th>
                                         <TextTranslate
-                                            id={`homYonalishMagTitle`}
+                                            id={`homYonalishTitle`}
+                                        />
+                                    </th>
+                                    <th>
+                                        <TextTranslate
+                                            id={`homYonalishShartnoma`}
+                                        />
+                                    </th>
+                                    <th>
+                                        <TextTranslate
+                                            id={`homYonalishShartnoma_2`}
                                         />
                                     </th>
                                 </tr>
@@ -95,6 +120,8 @@ const Yonalishlar = () => {
                                         <td>
                                             <TextTranslate id={item.title_id} />
                                         </td>
+                                        <td>{item.tolovUZS}</td>
+                                        <td>~{item.tolovUSD}</td>
                                     </tr>
                                 ))}
                             </tbody>

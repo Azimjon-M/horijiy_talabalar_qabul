@@ -65,8 +65,8 @@ const Yonalishlar = () => {
                                         <td>
                                             <TextTranslate id={item.title_id} />
                                         </td>
-                                        <td>{item.tolovUZS}</td>
-                                        <td>~{item.tolovUSD}</td>
+                                        <td>{item.tolovUZS} so'm</td>
+                                        <td>~{item.tolovUSD} $</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -120,8 +120,8 @@ const Yonalishlar = () => {
                                         <td>
                                             <TextTranslate id={item.title_id} />
                                         </td>
-                                        <td>{item.tolovUZS}</td>
-                                        <td>~{item.tolovUSD}</td>
+                                        <td>{item.tolovUZS} so'm</td>
+                                        <td>~{item.tolovUSD} $</td>
                                     </tr>
                                 ))}
                             </tbody>

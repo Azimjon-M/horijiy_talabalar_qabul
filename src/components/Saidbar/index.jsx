@@ -12,6 +12,7 @@ const Saidbar = () => {
     };
     const onLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("dates");
         navigate("/login");
     };
 

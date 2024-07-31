@@ -146,7 +146,7 @@ const AdminPanel = () => {
                             );
                         })
                     ) : (
-                        <div className="text-[red]">Ma'lumot kiritilmagan!</div>
+                        <div className="text-[red]">Ariza kelib tushmagan!</div>
                     )}
                 </div>
             </div>

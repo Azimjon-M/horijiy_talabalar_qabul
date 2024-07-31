@@ -1,4 +1,4 @@
-import Students1 from "../assets/images/Students_1.jpg";
+import Students1 from "../assets/images/images_1.jpg";
 import Students2 from "../assets/images/Students_2.jpg";
 import Students3 from "../assets/images/Students_3.jpg";
 export const CarouselData = [

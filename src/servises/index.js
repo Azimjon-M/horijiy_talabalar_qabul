@@ -2,12 +2,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const axiosInstance = axios.create({
-    baseURL: "https://qabul.pythonanywhere.com/",
+    baseURL: "https://qabulapi.pythonanywhere.com/",
     headers: {
-        // "Content-Type": "multipart/form-data",
         "Content-Type": "multipart/form-data",
-        
-        // Accept: "aplication/json",
     },
 });
 

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { FiMenu, FiLogOut } from "react-icons/fi";
 import "./style.css";
 
 const Saidbar = () => {
     const navigate = useNavigate();
+    const {pathname} = useLocation()
+    const res = pathname.slice(0, 18)
     const [menu, setMenu] = useState(false);
 
     const hanleClickLogo = () => {
@@ -36,13 +38,75 @@ const Saidbar = () => {
                         />
                     </div>
                     <ul className={`${menu && "hidden"} p-4`}>
-                        <li className="my-2">
-                            <Link
-                                className={` text-[18px] font-medium underline-offset-2`}
-                                to={`admin-panel`}
+                        <li className="">
+                            <NavLink
+                                className={({ isActive }) =>
+                                    `${
+                                        isActive && "underline"
+                                    } text-[18px] font-medium underline-offset-2`
+                                }
+                                // className={` text-[18px] font-medium underline-offset-2`}
+                                to={`/admin-panel/arizalar`}
                             >
                                 Arizalar
-                            </Link>
+                            </NavLink>
+                        </li>
+                        <li className="">
+                            <div className="join join-vertical w-full ">
+                                <div className="collapse collapse-arrow join-item border-base-300 border p-0">
+                                    <input
+                                        type="checkbox"
+                                        name="my-accordion-4"
+                                    />
+                                    <div className={`${res === "/admin-panel/qabul" && "underline"} collapse-title text-[18px] font-medium after:top-[12px!important] p-0`}>
+                                        Qabul
+                                    </div>
+                                    <div className="collapse-content -mt-8 p-2 z-50">
+                                        <div className="flex flex-col">
+                                            <NavLink
+                                                className={({ isActive }) =>
+                                                    `${
+                                                        isActive && "underline"
+                                                    } text-[18px] font-medium underline-offset-2`
+                                                }
+                                                to={`/admin-panel/qabul/bakalavr`}
+                                            >
+                                                Bakalavr
+                                            </NavLink>
+                                            <NavLink
+                                                className={({ isActive }) =>
+                                                    `${
+                                                        isActive && "underline"
+                                                    } text-[18px] font-medium underline-offset-2`
+                                                }
+                                                to={`/admin-panel/qabul/magistr`}
+                                            >
+                                                Magistr
+                                            </NavLink>
+                                            <NavLink
+                                                className={({ isActive }) =>
+                                                    `${
+                                                        isActive && "underline"
+                                                    } text-[18px] font-medium underline-offset-2`
+                                                }
+                                                to={`/admin-panel/qabul/phd`}
+                                            >
+                                                PhD
+                                            </NavLink>
+                                            <NavLink
+                                                className={({ isActive }) =>
+                                                    `${
+                                                        isActive && "underline"
+                                                    } text-[18px] font-medium underline-offset-2`
+                                                }
+                                                to={`/admin-panel/qabul/dsc`}
+                                            >
+                                                DsC
+                                            </NavLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

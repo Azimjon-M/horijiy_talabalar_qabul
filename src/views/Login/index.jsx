@@ -21,7 +21,7 @@ const Login = () => {
                     localStorage.setItem("token", res?.data?.access);
                     const dates = JSON.stringify(values);
                     localStorage.setItem("dates", dates);
-                    navigate("/admin-panel");
+                    navigate("/admin-panel/arizalar");
                 }
             } catch {
                 setErr(true);

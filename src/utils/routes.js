@@ -8,6 +8,10 @@ import Bakalavr from "../views/Bakalavr";
 import Magistr from "../views/Magistr";
 import PhD from "../views/PhD";
 import DsC from "../views/DsC";
+import AdminBakalavr from "../views/AdminBakalavr";
+import AdminMagistr from "../views/AdminMagistr";
+import AdminPhd from "../views/AdminPhd";
+import AdminDsc from "../views/AdminDsc";
 
 const routes = [
     {
@@ -61,9 +65,41 @@ const routes = [
         element: DsC,
         role: "user",
     },
-    // /qabul child
     {
         id: 7,
+        path: "/admin-panel/qabul/bakalavr",
+        isPrivate: true,
+        hidden: true,
+        element: AdminBakalavr,
+        role: "user",
+    },
+    {
+        id: 8,
+        path: "/admin-panel/qabul/magistr",
+        isPrivate: true,
+        hidden: true,
+        element: AdminMagistr,
+        role: "user",
+    },
+    {
+        id: 9,
+        path: "/admin-panel/qabul/phd",
+        isPrivate: true,
+        hidden: true,
+        element: AdminPhd,
+        role: "user",
+    },
+    {
+        id: 10,
+        path: "/admin-panel/qabul/dsc",
+        isPrivate: true,
+        hidden: true,
+        element: AdminDsc,
+        role: "user",
+    },
+    // /qabul child
+    {
+        id: 11,
         title_id: "navArizaYuborish",
         path: "/ariza-yuborish",
         isPrivate: false,
@@ -73,7 +109,7 @@ const routes = [
         isBtn: true,
     },
     {
-        id: 8,
+        id: 12,
         title_id: "Author",
         path: "/authors",
         isPrivate: false,
@@ -82,8 +118,8 @@ const routes = [
         role: "user",
     },
     {
-        id: 9,
-        path: "/admin-panel",
+        id: 13,
+        path: "/admin-panel/arizalar",
         isPrivate: true,
         hidden: true,
         element: AdminPanel,

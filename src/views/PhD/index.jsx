@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import APIPhD from "../../servises/phd";
 import TextTranslate from "../../components/TextTranslate";
+import { TogglerLang } from "../../context/language";
 
 const PhD = () => {
+    const { isLang } = useContext(TogglerLang);
+
     const [dataMud, setDataMud] = useState(null);
     const [dataRoy, setDataRoy] = useState(null);
     const [dataTol, setDataTol] = useState(null);
@@ -50,7 +53,7 @@ const PhD = () => {
                                     key={item.id}
                                     className="ms-8 sm:text-[18px] xl:text-[20px] 2xl:text-[22px]"
                                 >
-                                    {item.name}
+                                    {item[`name_${isLang}`]}
                                 </li>
                             ))
                         ) : (
@@ -71,7 +74,7 @@ const PhD = () => {
                                     key={item.id}
                                     className="ms-8 sm:text-[18px] xl:text-[20px] 2xl:text-[22px]"
                                 >
-                                    {item.name}
+                                    {item[`name_${isLang}`]}
                                 </li>
                             ))
                         ) : (
@@ -92,7 +95,7 @@ const PhD = () => {
                                     key={item.id}
                                     className="ms-8 sm:text-[18px] xl:text-[20px] 2xl:text-[22px]"
                                 >
-                                    {item.name}
+                                    {item[`name_${isLang}`]}
                                 </li>
                             ))
                         ) : (
@@ -184,7 +187,7 @@ const PhD = () => {
                                     key={item.id}
                                     className="sm:text-[18px] xl:text-[20px] 2xl:text-[22px]"
                                 >
-                                    {item.name}
+                                    {item[`name_${isLang}`]}
                                 </li>
                             ))
                         ) : (

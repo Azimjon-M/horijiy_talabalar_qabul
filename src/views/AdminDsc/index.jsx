@@ -5,8 +5,8 @@ import { useFormik } from "formik";
 import { BiBlock } from "react-icons/bi";
 import { RxArrowTopRight } from "react-icons/rx";
 import { TextWarn } from "./styled";
-import { MdEdit, MdDelete} from "react-icons/md";
-import APIBakalavr from "../../servises/bakalavr";
+import { MdEdit, MdDelete } from "react-icons/md";
+import APIDsc from "../../servises/dsc";
 
 const AdminDsc = () => {
     const navigate = useNavigate();
@@ -18,7 +18,10 @@ const AdminDsc = () => {
     }, [navigate]);
 
     const [load, setLoad] = useState(true);
-    const [errTxt, setErrTxt] = useState(false);
+    const [errTxtMud, setErrTxtMud] = useState(false);
+    const [errTxtRoy, setErrTxtRoy] = useState(false);
+    const [errTxtTol, setErrTxtTol] = useState(false);
+    const [errTxtTolMal, setErrTxtTolMal] = useState(false);
 
     const [dataMud, setDataMud] = useState([]);
     const [dataRoy, setDataRoy] = useState([]);
@@ -31,7 +34,7 @@ const AdminDsc = () => {
     const [isEditTolMal, setIsEditTolMal] = useState(null);
 
     const getDataMud = () => {
-        APIBakalavr.getMud()
+        APIDsc.getMud()
             .then((res) => {
                 setDataMud(res.data);
                 setLoad(false);
@@ -42,7 +45,7 @@ const AdminDsc = () => {
             });
     };
     const getDataRoy = () => {
-        APIBakalavr.getRoy()
+        APIDsc.getRoy()
             .then((res) => {
                 setDataRoy(res.data);
                 setLoad(false);
@@ -53,7 +56,7 @@ const AdminDsc = () => {
             });
     };
     const getDataTol = () => {
-        APIBakalavr.getTol()
+        APIDsc.getTol()
             .then((res) => {
                 setDataTol(res.data);
                 setLoad(false);
@@ -64,7 +67,7 @@ const AdminDsc = () => {
             });
     };
     const getDataTolMal = () => {
-        APIBakalavr.getTolMal()
+        APIDsc.getTolMal()
             .then((res) => {
                 setDataTolMal(res.data);
                 setLoad(false);
@@ -87,13 +90,13 @@ const AdminDsc = () => {
                 values.name_ru === "" ||
                 values.name_en === ""
             ) {
-                setErrTxt(true);
+                setErrTxtMud(true);
                 setTimeout(() => {
-                    setErrTxt(false);
+                    setErrTxtMud(false);
                 }, 5000);
             } else {
                 setLoad(true);
-                APIBakalavr.postMud(values)
+                APIDsc.postMud(values)
                     .then(() => {
                         getDataMud();
                     })
@@ -115,13 +118,13 @@ const AdminDsc = () => {
                 values.name_ru === "" ||
                 values.name_en === ""
             ) {
-                setErrTxt(true);
+                setErrTxtRoy(true);
                 setTimeout(() => {
-                    setErrTxt(false);
+                    setErrTxtRoy(false);
                 }, 5000);
             } else {
                 setLoad(true);
-                APIBakalavr.postRoy(values)
+                APIDsc.postRoy(values)
                     .then(() => {
                         getDataRoy();
                     })
@@ -143,13 +146,13 @@ const AdminDsc = () => {
                 values.name_ru === "" ||
                 values.name_en === ""
             ) {
-                setErrTxt(true);
+                setErrTxtTol(true);
                 setTimeout(() => {
-                    setErrTxt(false);
+                    setErrTxtTol(false);
                 }, 5000);
             } else {
                 setLoad(true);
-                APIBakalavr.postTol(values)
+                APIDsc.postTol(values)
                     .then(() => {
                         getDataTol();
                     })
@@ -171,13 +174,13 @@ const AdminDsc = () => {
                 values.name_ru === "" ||
                 values.name_en === ""
             ) {
-                setErrTxt(true);
+                setErrTxtTolMal(true);
                 setTimeout(() => {
-                    setErrTxt(false);
+                    setErrTxtTolMal(false);
                 }, 5000);
             } else {
                 setLoad(true);
-                APIBakalavr.postTolMal(values)
+                APIDsc.postTolMal(values)
                     .then(() => {
                         getDataTolMal();
                     })
@@ -194,7 +197,7 @@ const AdminDsc = () => {
             const res = window.confirm("Ishonchingiz komilmi?");
             if (res) {
                 setLoad(true);
-                APIBakalavr.delMud(id)
+                APIDsc.delMud(id)
                     .then(() => {
                         getDataMud();
                         setIsEditMud(null);
@@ -211,7 +214,7 @@ const AdminDsc = () => {
             const res = window.confirm("Ishonchingiz komilmi?");
             if (res) {
                 setLoad(true);
-                APIBakalavr.delRoy(id)
+                APIDsc.delRoy(id)
                     .then(() => {
                         getDataRoy();
                         setIsEditRoy(null);
@@ -228,7 +231,7 @@ const AdminDsc = () => {
             const res = window.confirm("Ishonchingiz komilmi?");
             if (res) {
                 setLoad(true);
-                APIBakalavr.delTol(id)
+                APIDsc.delTol(id)
                     .then(() => {
                         getDataTol();
                         setIsEditTol(null);
@@ -245,7 +248,7 @@ const AdminDsc = () => {
             const res = window.confirm("Ishonchingiz komilmi?");
             if (res) {
                 setLoad(true);
-                APIBakalavr.delTolMal(id)
+                APIDsc.delTolMal(id)
                     .then(() => {
                         getDataTolMal();
                         setIsEditTolMal(null);
@@ -260,7 +263,7 @@ const AdminDsc = () => {
             setLoad(true);
             const { id, ...res } = isEditMud;
             const data = res;
-            APIBakalavr.patchMud(id, data)
+            APIDsc.patchMud(id, data)
                 .then(() => {
                     getDataMud();
                 })
@@ -279,7 +282,7 @@ const AdminDsc = () => {
             setLoad(true);
             const { id, ...res } = isEditRoy;
             const data = res;
-            APIBakalavr.patchRoy(id, data)
+            APIDsc.patchRoy(id, data)
                 .then(() => {
                     getDataRoy();
                 })
@@ -298,7 +301,7 @@ const AdminDsc = () => {
             setLoad(true);
             const { id, ...res } = isEditTol;
             const data = res;
-            APIBakalavr.patchTol(id, data)
+            APIDsc.patchTol(id, data)
                 .then(() => {
                     getDataTol();
                 })
@@ -317,7 +320,7 @@ const AdminDsc = () => {
             setLoad(true);
             const { id, ...res } = isEditTolMal;
             const data = res;
-            APIBakalavr.patchTolMal(id, data)
+            APIDsc.patchTolMal(id, data)
                 .then(() => {
                     getDataTolMal();
                 })
@@ -338,6 +341,27 @@ const AdminDsc = () => {
         });
     };
 
+    const handleChangeEditRoy = (e) => {
+        setIsEditRoy({
+            ...isEditRoy,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleChangeEditTol = (e) => {
+        setIsEditTol({
+            ...isEditTol,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleChangeEditTolMal = (e) => {
+        setIsEditTolMal({
+            ...isEditTolMal,
+            [e.target.name]: e.target.value,
+        });
+    };
+
     useEffect(() => {
         setLoad(true);
         getDataMud();
@@ -347,11 +371,11 @@ const AdminDsc = () => {
     }, []);
 
     return (
-        <div className="relative">
+        <div className="relative px-10">
             <div
                 className={`${
                     !load && "hidden "
-                } z-50 fixed top-[60px] right-[15px] w-[calc(100%-310px)] h-[100vh] bg-[#0000002d] border boredr-[red] `}
+                } z-50 fixed top-[30px] right-[0px] w-[calc(100%-250px)] 2xl:w-[calc(100%-258px)] h-[100vh] bg-[#0000002d] border boredr-[red] `}
             >
                 <div className="w-full h-full flex justify-center items-center relative">
                     <Loader />
@@ -359,17 +383,19 @@ const AdminDsc = () => {
             </div>
             <div className="w-full p-[10px] -z-10">
                 <h1 className="text-center text-[1.8rem] font-medium mt-4">
-                    Bakalavr
+                    DsC
                 </h1>
                 <div className="w-full my-12">
                     <div>
-                        <h1 className="text-[1.4rem] font-medium">Muddat</h1>
+                        <h1 className="text-[1.4rem] font-medium">
+                            Hujjatlarini topshirish muddatlari:
+                        </h1>
                         <form
                             className="flex items-center gap-2"
                             onSubmit={formik_Mud.handleSubmit}
                         >
                             <label className="w-[25%]" htmlFor="name_uz">
-                                <h3>Muddat uz</h3>
+                                <h3>UZ</h3>
                                 <textarea
                                     className="w-full input input-bordered px-[7px]"
                                     type="text"
@@ -379,7 +405,7 @@ const AdminDsc = () => {
                                 />
                             </label>
                             <label className="w-[25%]" htmlFor="name_ru">
-                                <h3>Muddat ru</h3>
+                                <h3>RU</h3>
                                 <textarea
                                     className="w-full input input-bordered px-[7px]"
                                     type="text"
@@ -389,7 +415,7 @@ const AdminDsc = () => {
                                 />
                             </label>
                             <label className="w-[25%]" htmlFor="name_en">
-                                <h3>Muddat en</h3>
+                                <h3>EN</h3>
                                 <textarea
                                     className="w-full input input-bordered px-[7px]"
                                     type="text"
@@ -400,14 +426,14 @@ const AdminDsc = () => {
                             </label>
                             <button
                                 className={`${
-                                    errTxt
+                                    errTxtMud
                                         ? "bg-red-500 hover:bg-red-600"
                                         : "bg-blue-400 hover:bg-blue-600"
                                 } flex justify-center items-center gap-1 w-[25%] h-[48px] text-white mt-[18px] font-bold rounded-lg active:scale-95`}
                                 type="submit"
                             >
                                 JO'NATISH
-                                {errTxt ? (
+                                {errTxtMud ? (
                                     <BiBlock />
                                 ) : (
                                     <RxArrowTopRight className="font-bold text-[20px] mt-[2px]" />
@@ -416,7 +442,7 @@ const AdminDsc = () => {
                         </form>
                         <TextWarn
                             className={`${
-                                errTxt ? "inline-block" : "hidden"
+                                errTxtMud ? "inline-block" : "hidden"
                             } w-full font-medium text-center`}
                         >
                             Hamma kiritish bo'limlari kiritilishi shart!
@@ -426,7 +452,7 @@ const AdminDsc = () => {
                         <div className="collapse collapse-arrow">
                             <input type="checkbox" name="my-accordion-2" />
                             <div className="collapse-title text-xl font-medium bg-gray-200">
-                                Bakalavr lavozimlari:
+                                Hujjatlarini topshirish muddat ma'lumotlari:
                             </div>
                             <div className="collapse-content">
                                 {dataMud?.length !== 0 ? (
@@ -538,6 +564,622 @@ const AdminDsc = () => {
                                                             <button
                                                                 onClick={() =>
                                                                     onDelMud(
+                                                                        item.id
+                                                                    )
+                                                                }
+                                                                className="flex items-center gap-2 bg-red-500 rounded-md py-1 px-4 text-white font-medium hover:bg-red-600 active:scale-95"
+                                                            >
+                                                                <span>
+                                                                    O'CHIRISH
+                                                                </span>
+                                                                <MdDelete />
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <div className="ms-4 text-red-600">
+                                        Ma'lumot mavjud emas!
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Royhat */}
+                <div className="w-full my-12">
+                    <div>
+                        <h1 className="text-[1.4rem] font-medium">
+                            Kerak bo'lgan hujjatlar ro'yxati:
+                        </h1>
+                        <form
+                            className="flex items-center gap-2"
+                            onSubmit={formik_Roy.handleSubmit}
+                        >
+                            <label className="w-[25%]" htmlFor="name_uz">
+                                <h3>UZ</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_uz"
+                                    value={formik_Roy.values.name_uz}
+                                    onChange={formik_Roy.handleChange}
+                                />
+                            </label>
+                            <label className="w-[25%]" htmlFor="name_ru">
+                                <h3>RU</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_ru"
+                                    value={formik_Roy.values.name_ru}
+                                    onChange={formik_Roy.handleChange}
+                                />
+                            </label>
+                            <label className="w-[25%]" htmlFor="name_en">
+                                <h3>EN</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_en"
+                                    value={formik_Roy.values.name_en}
+                                    onChange={formik_Roy.handleChange}
+                                />
+                            </label>
+                            <button
+                                className={`${
+                                    errTxtRoy
+                                        ? "bg-red-500 hover:bg-red-600"
+                                        : "bg-blue-400 hover:bg-blue-600"
+                                } flex justify-center items-center gap-1 w-[25%] h-[48px] text-white mt-[18px] font-bold rounded-lg active:scale-95`}
+                                type="submit"
+                            >
+                                JO'NATISH
+                                {errTxtRoy ? (
+                                    <BiBlock />
+                                ) : (
+                                    <RxArrowTopRight className="font-bold text-[20px] mt-[2px]" />
+                                )}
+                            </button>
+                        </form>
+                        <TextWarn
+                            className={`${
+                                errTxtRoy ? "inline-block" : "hidden"
+                            } w-full font-medium text-center`}
+                        >
+                            Hamma kiritish bo'limlari kiritilishi shart!
+                        </TextWarn>
+                    </div>
+                    <div className="mt-5">
+                        <div className="collapse collapse-arrow">
+                            <input type="checkbox" name="my-accordion-2" />
+                            <div className="collapse-title text-xl font-medium bg-gray-200">
+                                Kerak bo'lgan hujjatlar ma'lumotlari:
+                            </div>
+                            <div className="collapse-content">
+                                {dataRoy?.length !== 0 ? (
+                                    <table className="table -z-0">
+                                        <thead>
+                                            <tr className="font-medium text-black">
+                                                <th></th>
+                                                <th>Uz</th>
+                                                <th>Ru</th>
+                                                <th>En</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {dataRoy?.length !== 0 &&
+                                                dataRoy.map((item, idx) => (
+                                                    <tr key={item.id}>
+                                                        <th>{idx + 1}</th>
+                                                        <td>
+                                                            {isEditRoy?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_uz"
+                                                                    id="name_uz"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditRoy
+                                                                    }
+                                                                    value={
+                                                                        isEditRoy.name_uz
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_uz
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {isEditRoy?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_ru"
+                                                                    id="name_ru"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditRoy
+                                                                    }
+                                                                    value={
+                                                                        isEditRoy.name_ru
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_ru
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {isEditRoy?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_en"
+                                                                    id="name_en"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditRoy
+                                                                    }
+                                                                    value={
+                                                                        isEditRoy.name_en
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_en
+                                                            )}
+                                                        </td>
+                                                        <td className="flex gap-2">
+                                                            <button
+                                                                onClick={() =>
+                                                                    onEditRoy(
+                                                                        item,
+                                                                        isEditRoy?.id ===
+                                                                            item.id
+                                                                    )
+                                                                }
+                                                                className={` ${
+                                                                    isEditRoy?.id ===
+                                                                    item.id
+                                                                        ? "bg-blue-400 hover:bg-blue-600"
+                                                                        : "bg-gray-400 hover:bg-gray-600"
+                                                                } flex items-center gap-2  rounded-md py-1 px-4 text-white font-medium active:scale-95`}
+                                                            >
+                                                                {isEditRoy?.id ===
+                                                                item.id ? (
+                                                                    <>
+                                                                        <span>
+                                                                            Jo'natish
+                                                                        </span>
+                                                                        <RxArrowTopRight />
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <span>
+                                                                            Tahrirlash
+                                                                        </span>
+                                                                        <MdEdit />
+                                                                    </>
+                                                                )}
+                                                            </button>
+                                                            <button
+                                                                onClick={() =>
+                                                                    onDelRoy(
+                                                                        item.id
+                                                                    )
+                                                                }
+                                                                className="flex items-center gap-2 bg-red-500 rounded-md py-1 px-4 text-white font-medium hover:bg-red-600 active:scale-95"
+                                                            >
+                                                                <span>
+                                                                    O'CHIRISH
+                                                                </span>
+                                                                <MdDelete />
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <div className="ms-4 text-red-600">
+                                        Ma'lumot mavjud emas!
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Tolov haqida */}
+                <div className="w-full my-12">
+                    <div>
+                        <h1 className="text-[1.4rem] font-medium">
+                            To'lov haqida :
+                        </h1>
+                        <form
+                            className="flex items-center gap-2"
+                            onSubmit={formik_Tol.handleSubmit}
+                        >
+                            <label className="w-[25%]" htmlFor="name_uz">
+                                <h3>UZ</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_uz"
+                                    value={formik_Tol.values.name_uz}
+                                    onChange={formik_Tol.handleChange}
+                                />
+                            </label>
+                            <label className="w-[25%]" htmlFor="name_ru">
+                                <h3>RU</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_ru"
+                                    value={formik_Tol.values.name_ru}
+                                    onChange={formik_Tol.handleChange}
+                                />
+                            </label>
+                            <label className="w-[25%]" htmlFor="name_en">
+                                <h3>EN</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_en"
+                                    value={formik_Tol.values.name_en}
+                                    onChange={formik_Tol.handleChange}
+                                />
+                            </label>
+                            <button
+                                className={`${
+                                    errTxtTol
+                                        ? "bg-red-500 hover:bg-red-600"
+                                        : "bg-blue-400 hover:bg-blue-600"
+                                } flex justify-center items-center gap-1 w-[25%] h-[48px] text-white mt-[18px] font-bold rounded-lg active:scale-95`}
+                                type="submit"
+                            >
+                                JO'NATISH
+                                {errTxtTol ? (
+                                    <BiBlock />
+                                ) : (
+                                    <RxArrowTopRight className="font-bold text-[20px] mt-[2px]" />
+                                )}
+                            </button>
+                        </form>
+                        <TextWarn
+                            className={`${
+                                errTxtTol ? "inline-block" : "hidden"
+                            } w-full font-medium text-center`}
+                        >
+                            Hamma kiritish bo'limlari kiritilishi shart!
+                        </TextWarn>
+                    </div>
+                    <div className="mt-5">
+                        <div className="collapse collapse-arrow">
+                            <input type="checkbox" name="my-accordion-2" />
+                            <div className="collapse-title text-xl font-medium bg-gray-200">
+                                To'lov ma'lumotlari:
+                            </div>
+                            <div className="collapse-content">
+                                {dataTol?.length !== 0 ? (
+                                    <table className="table -z-0">
+                                        <thead>
+                                            <tr className="font-medium text-black">
+                                                <th></th>
+                                                <th>Uz</th>
+                                                <th>Ru</th>
+                                                <th>En</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {dataTol?.length !== 0 &&
+                                                dataTol.map((item, idx) => (
+                                                    <tr key={item.id}>
+                                                        <th>{idx + 1}</th>
+                                                        <td>
+                                                            {isEditTol?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_uz"
+                                                                    id="name_uz"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditTol
+                                                                    }
+                                                                    value={
+                                                                        isEditTol.name_uz
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_uz
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {isEditTol?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_ru"
+                                                                    id="name_ru"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditTol
+                                                                    }
+                                                                    value={
+                                                                        isEditTol.name_ru
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_ru
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {isEditTol?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_en"
+                                                                    id="name_en"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditTol
+                                                                    }
+                                                                    value={
+                                                                        isEditTol.name_en
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_en
+                                                            )}
+                                                        </td>
+                                                        <td className="flex gap-2">
+                                                            <button
+                                                                onClick={() =>
+                                                                    onEditTol(
+                                                                        item,
+                                                                        isEditTol?.id ===
+                                                                            item.id
+                                                                    )
+                                                                }
+                                                                className={` ${
+                                                                    isEditTol?.id ===
+                                                                    item.id
+                                                                        ? "bg-blue-400 hover:bg-blue-600"
+                                                                        : "bg-gray-400 hover:bg-gray-600"
+                                                                } flex items-center gap-2  rounded-md py-1 px-4 text-white font-medium active:scale-95`}
+                                                            >
+                                                                {isEditTol?.id ===
+                                                                item.id ? (
+                                                                    <>
+                                                                        <span>
+                                                                            Jo'natish
+                                                                        </span>
+                                                                        <RxArrowTopRight />
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <span>
+                                                                            Tahrirlash
+                                                                        </span>
+                                                                        <MdEdit />
+                                                                    </>
+                                                                )}
+                                                            </button>
+                                                            <button
+                                                                onClick={() =>
+                                                                    onDelTol(
+                                                                        item.id
+                                                                    )
+                                                                }
+                                                                className="flex items-center gap-2 bg-red-500 rounded-md py-1 px-4 text-white font-medium hover:bg-red-600 active:scale-95"
+                                                            >
+                                                                <span>
+                                                                    O'CHIRISH
+                                                                </span>
+                                                                <MdDelete />
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <div className="ms-4 text-red-600">
+                                        Ma'lumot mavjud emas!
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* To'liq ma'lumot */}
+                <div className="w-full my-12">
+                    <div>
+                        <h1 className="text-[1.4rem] font-medium">
+                            To'liq ma'lumotlarni olish uchun bog'lanish:
+                        </h1>
+                        <form
+                            className="flex items-center gap-2"
+                            onSubmit={formik_TolMal.handleSubmit}
+                        >
+                            <label className="w-[25%]" htmlFor="name_uz">
+                                <h3>UZ</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_uz"
+                                    value={formik_TolMal.values.name_uz}
+                                    onChange={formik_TolMal.handleChange}
+                                />
+                            </label>
+                            <label className="w-[25%]" htmlFor="name_ru">
+                                <h3>RU</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_ru"
+                                    value={formik_TolMal.values.name_ru}
+                                    onChange={formik_TolMal.handleChange}
+                                />
+                            </label>
+                            <label className="w-[25%]" htmlFor="name_en">
+                                <h3>EN</h3>
+                                <textarea
+                                    className="w-full input input-bordered px-[7px]"
+                                    type="text"
+                                    id="name_en"
+                                    value={formik_TolMal.values.name_en}
+                                    onChange={formik_TolMal.handleChange}
+                                />
+                            </label>
+                            <button
+                                className={`${
+                                    errTxtTolMal
+                                        ? "bg-red-500 hover:bg-red-600"
+                                        : "bg-blue-400 hover:bg-blue-600"
+                                } flex justify-center items-center gap-1 w-[25%] h-[48px] text-white mt-[18px] font-bold rounded-lg active:scale-95`}
+                                type="submit"
+                            >
+                                JO'NATISH
+                                {errTxtTolMal ? (
+                                    <BiBlock />
+                                ) : (
+                                    <RxArrowTopRight className="font-bold text-[20px] mt-[2px]" />
+                                )}
+                            </button>
+                        </form>
+                        <TextWarn
+                            className={`${
+                                errTxtTolMal ? "inline-block" : "hidden"
+                            } w-full font-medium text-center`}
+                        >
+                            Hamma kiritish bo'limlari kiritilishi shart!
+                        </TextWarn>
+                    </div>
+                    <div className="mt-5">
+                        <div className="collapse collapse-arrow">
+                            <input type="checkbox" name="my-accordion-2" />
+                            <div className="collapse-title text-xl font-medium bg-gray-200">
+                                To'liq ma'lumotlarni olish uchun bog'lanish
+                                ma'lumotlari:
+                            </div>
+                            <div className="collapse-content">
+                                {dataTolMal?.length !== 0 ? (
+                                    <table className="table -z-0">
+                                        <thead>
+                                            <tr className="font-medium text-black">
+                                                <th></th>
+                                                <th>Uz</th>
+                                                <th>Ru</th>
+                                                <th>En</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {dataTolMal?.length !== 0 &&
+                                                dataTolMal.map((item, idx) => (
+                                                    <tr key={item.id}>
+                                                        <th>{idx + 1}</th>
+                                                        <td>
+                                                            {isEditTolMal?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_uz"
+                                                                    id="name_uz"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditTolMal
+                                                                    }
+                                                                    value={
+                                                                        isEditTolMal.name_uz
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_uz
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {isEditTolMal?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_ru"
+                                                                    id="name_ru"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditTolMal
+                                                                    }
+                                                                    value={
+                                                                        isEditTolMal.name_ru
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_ru
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {isEditTolMal?.id ===
+                                                            item.id ? (
+                                                                <textarea
+                                                                    type="text"
+                                                                    name="name_en"
+                                                                    id="name_en"
+                                                                    className="w-full input input-bordered px-[7px]"
+                                                                    onChange={
+                                                                        handleChangeEditTolMal
+                                                                    }
+                                                                    value={
+                                                                        isEditTolMal.name_en
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                item.name_en
+                                                            )}
+                                                        </td>
+                                                        <td className="flex gap-2">
+                                                            <button
+                                                                onClick={() =>
+                                                                    onEditTolMal(
+                                                                        item,
+                                                                        isEditTolMal?.id ===
+                                                                            item.id
+                                                                    )
+                                                                }
+                                                                className={` ${
+                                                                    isEditTolMal?.id ===
+                                                                    item.id
+                                                                        ? "bg-blue-400 hover:bg-blue-600"
+                                                                        : "bg-gray-400 hover:bg-gray-600"
+                                                                } flex items-center gap-2  rounded-md py-1 px-4 text-white font-medium active:scale-95`}
+                                                            >
+                                                                {isEditTolMal?.id ===
+                                                                item.id ? (
+                                                                    <>
+                                                                        <span>
+                                                                            Jo'natish
+                                                                        </span>
+                                                                        <RxArrowTopRight />
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <span>
+                                                                            Tahrirlash
+                                                                        </span>
+                                                                        <MdEdit />
+                                                                    </>
+                                                                )}
+                                                            </button>
+                                                            <button
+                                                                onClick={() =>
+                                                                    onDelTolMal(
                                                                         item.id
                                                                     )
                                                                 }

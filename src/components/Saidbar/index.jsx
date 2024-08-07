@@ -120,7 +120,7 @@ const Saidbar = () => {
                 </button>
             </div>
             <div className="w-full">
-                <div className="w-full h-[30px] bg-gray-500 sticky top-0 right-0 -z-0" />
+                <div className="w-full h-[30px] bg-gray-500 sticky top-0 right-0 z-50" />
                 <div className="-z-20">
                     <Outlet />
                 </div>

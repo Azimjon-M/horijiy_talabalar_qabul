@@ -39,7 +39,7 @@ const Magistr = () => {
             <div className="w-full sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1200px] 2xl:w-[1400px] flex flex-col justify-start px-4 sm:px-6">
                 <div className="my-8 sm:my-10 lg:my-14 2xl:my-20">
                     <h1 className="flex justify-center gap-2 text-center text-[26px] sm:text-[28px] 2xl:text-[30px] font-semibold">
-                        <TextTranslate id="qabMagistr" /> qabuli haqida
+                        <TextTranslate id="qabMagistr" />
                     </h1>
                 </div>
                 <div className="">

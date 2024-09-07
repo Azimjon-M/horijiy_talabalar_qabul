@@ -1,9 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { useFormik } from "formik";
 import Footer from "../../components/Footer";
 import TextTranslate from "../../components/TextTranslate";
 import APIPostAriza from "../../servises/postAriza";
+import { TogglerLang } from "../../context/language";
+import { dataBakalavr, dataMagistr } from "../../components/Yonalishlar/db";
+
+import langData from "../../language/idex.json";
+
 import * as Yup from "yup";
+
 const ArizaYuborish = () => {
     const [success, setSuccess] = useState(false);
 
@@ -11,6 +17,37 @@ const ArizaYuborish = () => {
     const [fileDip, setFileDip] = useState(null);
     const [errPas, setErrPas] = useState(false);
     const [errDip, setErrDip] = useState(false);
+
+    const { isLang } = useContext(TogglerLang);
+
+    const dataTD = [
+        {
+            id: 1,
+            name_uz: "Bakalavr",
+            name_ru: "Бакалавр",
+            name_en: "Bachelor",
+        },
+        {
+            id: 2,
+            name_uz: "Magistratura",
+            name_ru: "Магистратура",
+            name_en: "Master",
+        },
+        {
+            id: 3,
+            name_uz: "PHD",
+            name_ru: "PHD",
+            name_en: "PHD",
+            hidden: true,
+        },
+        {
+            id: 4,
+            name_uz: "DSC",
+            name_ru: "DSC",
+            name_en: "DSC",
+            hidden: true,
+        },
+    ];
 
     const fileRefPas = useRef();
     const fileRefDip = useRef();
@@ -37,6 +74,8 @@ const ArizaYuborish = () => {
             .min(3, "Too Short!")
             .max(50, "Too Long!")
             .required("Required"),
+        daraja: Yup.string().required("Required"),
+        yonalish: Yup.string().required("Required"),
     });
 
     const formik = useFormik({
@@ -50,20 +89,23 @@ const ArizaYuborish = () => {
             telegram_name: "",
             whatsapp_name: "",
             telefon_nomer: "",
+            daraja: `${dataTD[0][`name_${isLang}`]}`,
+            yonalish: "",
         },
         validationSchema: SignupSchema,
         onSubmit: async (values) => {
-            values.whatsapp_name = String(values.whatsapp_name);
-            !filePas ? setErrPas(true) : setErrPas(false);
-            !fileDip ? setErrDip(true) : setErrDip(false);
-            const res = { ...values, pasport: filePas, diplom: fileDip };
-            if (filePas && fileDip) {
-                setSuccess(true);
-                await APIPostAriza.post(res);
-                formik.resetForm();
-                fileRefPas.current.value = "";
-                fileRefDip.current.value = "";
-            }
+            console.log(values);
+            // values.whatsapp_name = String(values.whatsapp_name);
+            // !filePas ? setErrPas(true) : setErrPas(false);
+            // !fileDip ? setErrDip(true) : setErrDip(false);
+            // const res = { ...values, pasport: filePas, diplom: fileDip };
+            // if (filePas && fileDip) {
+            //     setSuccess(true);
+            //     await APIPostAriza.post(res);
+            //     formik.resetForm();
+            //     fileRefPas.current.value = "";
+            //     fileRefDip.current.value = "";
+            // }
         },
     });
 
@@ -76,6 +118,17 @@ const ArizaYuborish = () => {
         setFileDip(e.target.files[0]);
         setErrDip(false);
     };
+
+    // const test = dataBakalavr.map((item) => {
+    //     const translatedValue = <TextTranslate id={item.title_id} />;
+    //     return translatedValue;
+    //     // return (
+    //     //   <option key={item.id} value={translatedValue.props.children}>
+    //     //     {translatedValue}
+    //     //   </option>
+    //     // );
+    // });
+    // console.log(test);
 
     return (
         <div className="flex flex-col items-center justify-center">
@@ -220,6 +273,82 @@ const ArizaYuborish = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.tugatgan_oligoh}
                             />
+                        </label>
+                        {/* Talim darajasi */}
+                        <label className="form-control w-full">
+                            <div className="label">
+                                <span className="label-text">
+                                    Ta'lim darajasi
+                                </span>
+                            </div>
+                            <select
+                                className={`${
+                                    formik.errors.daraja &&
+                                    "border border-red-600"
+                                } select select-bordered w-full max-w-xs`}
+                                id="daraja"
+                                name="daraja"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.daraja}
+                            >
+                                {dataTD?.map((item) => {
+                                    return (
+                                        <option
+                                            value={item[`name_${isLang}`]}
+                                            key={item.id}
+                                            disabled={item.hidden}
+                                        >
+                                            {item[`name_${isLang}`]}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </label>
+                        {/* Talim yonalishi */}
+                        <label className="form-control w-full">
+                            <div className="label">
+                                <span className="label-text">
+                                    Ta'lim yo'nalishi
+                                </span>
+                            </div>
+                            <select
+                                className={`${
+                                    formik.errors.yonalish &&
+                                    "border border-red-600"
+                                } select select-bordered w-full max-w-xs`}
+                                id="yonalish"
+                                name="yonalish"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.yonalish}
+                            >
+                                {formik.values.daraja === "Bakalavr"
+                                    ? dataBakalavr.map((item) => {
+                                          const translatedValue =
+                                              langData[isLang][item.title_id];
+                                          return (
+                                              <option
+                                                  key={item.id}
+                                                  value={translatedValue}
+                                              >
+                                                  {translatedValue}
+                                              </option>
+                                          );
+                                      })
+                                    : dataMagistr.map((item) => {
+                                          const translatedValue =
+                                              langData[isLang][item.title_id];
+                                          return (
+                                              <option
+                                                  key={item.id}
+                                                  value={translatedValue}
+                                              >
+                                                  {translatedValue}
+                                              </option>
+                                          );
+                                      })}
+                            </select>
                         </label>
                         {/* Tel */}
                         <label className="form-control w-full">

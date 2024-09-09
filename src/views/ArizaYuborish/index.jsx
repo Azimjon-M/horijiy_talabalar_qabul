@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useMemo, useEffect } from "react";
 import { useFormik } from "formik";
 import Footer from "../../components/Footer";
 import TextTranslate from "../../components/TextTranslate";
@@ -20,34 +20,37 @@ const ArizaYuborish = () => {
 
     const { isLang } = useContext(TogglerLang);
 
-    const dataTD = [
-        {
-            id: 1,
-            name_uz: "Bakalavr",
-            name_ru: "Бакалавр",
-            name_en: "Bachelor",
-        },
-        {
-            id: 2,
-            name_uz: "Magistratura",
-            name_ru: "Магистратура",
-            name_en: "Master",
-        },
-        {
-            id: 3,
-            name_uz: "PHD",
-            name_ru: "PHD",
-            name_en: "PHD",
-            hidden: true,
-        },
-        {
-            id: 4,
-            name_uz: "DSC",
-            name_ru: "DSC",
-            name_en: "DSC",
-            hidden: true,
-        },
-    ];
+    const dataTD = useMemo(
+        () => [
+            {
+                id: 1,
+                name_uz: "Bakalavr",
+                name_ru: "Бакалавр",
+                name_en: "Bachelor",
+            },
+            {
+                id: 2,
+                name_uz: "Magistratura",
+                name_ru: "Магистратура",
+                name_en: "Master",
+            },
+            {
+                id: 3,
+                name_uz: "PHD",
+                name_ru: "PHD",
+                name_en: "PHD",
+                hidden: true,
+            },
+            {
+                id: 4,
+                name_uz: "DSC",
+                name_ru: "DSC",
+                name_en: "DSC",
+                hidden: true,
+            },
+        ],
+        []
+    );
 
     const fileRefPas = useRef();
     const fileRefDip = useRef();
@@ -90,22 +93,21 @@ const ArizaYuborish = () => {
             whatsapp_name: "",
             telefon_nomer: "",
             daraja: `${dataTD[0][`name_${isLang}`]}`,
-            yonalish: "",
+            yonalish: `${langData[isLang][dataBakalavr[0].title_id]}`,
         },
         validationSchema: SignupSchema,
         onSubmit: async (values) => {
-            console.log(values);
-            // values.whatsapp_name = String(values.whatsapp_name);
-            // !filePas ? setErrPas(true) : setErrPas(false);
-            // !fileDip ? setErrDip(true) : setErrDip(false);
-            // const res = { ...values, pasport: filePas, diplom: fileDip };
-            // if (filePas && fileDip) {
-            //     setSuccess(true);
-            //     await APIPostAriza.post(res);
-            //     formik.resetForm();
-            //     fileRefPas.current.value = "";
-            //     fileRefDip.current.value = "";
-            // }
+            values.whatsapp_name = String(values.whatsapp_name);
+            !filePas ? setErrPas(true) : setErrPas(false);
+            !fileDip ? setErrDip(true) : setErrDip(false);
+            const res = { ...values, pasport: filePas, diplom: fileDip };
+            if (filePas && fileDip) {
+                setSuccess(true);
+                await APIPostAriza.post(res);
+                formik.resetForm();
+                fileRefPas.current.value = "";
+                fileRefDip.current.value = "";
+            }
         },
     });
 
@@ -119,16 +121,16 @@ const ArizaYuborish = () => {
         setErrDip(false);
     };
 
-    // const test = dataBakalavr.map((item) => {
-    //     const translatedValue = <TextTranslate id={item.title_id} />;
-    //     return translatedValue;
-    //     // return (
-    //     //   <option key={item.id} value={translatedValue.props.children}>
-    //     //     {translatedValue}
-    //     //   </option>
-    //     // );
-    // });
-    // console.log(test);
+    const { values, setFieldValue } = formik; // formik'dan kerakli qismlarni ajratib olish
+
+    useEffect(() => {
+        const selectedData =
+            values.daraja === "Bakalavr" ? dataBakalavr : dataMagistr;
+        if (selectedData.length > 0) {
+            const firstOption = langData[isLang][selectedData[0].title_id];
+            setFieldValue("yonalish", firstOption); // 2-selectning birinchi elementi
+        }
+    }, [values.daraja, isLang, setFieldValue]); // Faqat kerakli dependency'larni qo'shish
 
     return (
         <div className="flex flex-col items-center justify-center">

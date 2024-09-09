@@ -85,6 +85,14 @@ const AdminPanel = () => {
                                             {item.tugatgan_oligoh}
                                         </div>
                                         <div>
+                                            <b>Talim darajasi: </b>{" "}
+                                            {item.daraja}
+                                        </div>
+                                        <div>
+                                            <b>Talim yo'nalish: </b>{" "}
+                                            {item.yonalish}
+                                        </div>
+                                        <div>
                                             <b>Email: </b> {item.email}
                                         </div>
                                         <div>

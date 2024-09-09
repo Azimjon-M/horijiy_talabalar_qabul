@@ -16,7 +16,7 @@
         "footerContetn_1": "Barcha huquqlar QDPI IT PARK tomonidan himoyalangan © 2024.",
         "footerContetn_2": "Ishlab chqaruvchi",
         "authorTitle": "ISHLAB CHQARUVCHILAR",
-        "authorSubTitle_1": "Front-End dasturchilar",
+        "authorSubTitle_1": "Front-End dasturchi",
         "authorSubTitle_2": "Back-End API dasturchi",
         "homYonalishTitle": "Ta'lim yo'nalishlari",
         "homYonalishShartnoma": "To'lov shartnoma UZS",
@@ -80,6 +80,8 @@
         "arizaBtn": "Yubor",
         "arizaSuccess": "Muvaffaqiyatli yubordingiz!",
         "arizaSuccessContetnt": "Siz bilan tez orada bog'lanamiz",
+        "arizaDaraja": "Ta'lim jarajasi",
+        "arizaYonalish": "Ta'lim yo'nalishi",
         "MalumotJoylanmagan": "Ma'lumot joylanmagan!"
     },
     "ru": {
@@ -99,7 +101,7 @@
         "footerContetn_1": "Все права защищены IT PARK KDPi © 2024.",
         "footerContetn_2": "Разработчик",
         "authorTitle": "РАЗРАБОТЧИКИ",
-        "authorSubTitle_1": "Front-End разработчики",
+        "authorSubTitle_1": "Front-End разработчик",
         "authorSubTitle_2": "Back-End API разработчик",
         "homYonalishTitle": "Направления образования",
         "homYonalishShartnoma": "Платный контракт UZS",
@@ -163,6 +165,8 @@
         "arizaBtn": "Отправить",
         "arizaSuccess": "Вы успешно отправили!",
         "arizaSuccessContetnt": "Мы скоро свяжемся с вами",
+        "arizaDaraja": "Образовательный процесс",
+        "arizaYonalish": "Образовательное направление",
         "MalumotJoylanmagan": "Информация не размещена!"
     },
 
@@ -183,7 +187,7 @@
         "footerContetn_1": "All rights reserved by KDPi IT PARK © 2024.",
         "footerContetn_2": "Developer",
         "authorTitle": "DEVELOPERS",
-        "authorSubTitle_1": "Front-End Developers",
+        "authorSubTitle_1": "Front-End Developer",
         "authorSubTitle_2": "Back-End API Developer",
         "homYonalishTitle": "Educational Directions",
         "homYonalishShartnoma": "Payment Contract UZS",
@@ -247,6 +251,8 @@
         "arizaBtn": "Submit",
         "arizaSuccess": "You have successfully submitted!",
         "arizaSuccessContetnt": "We will contact you soon",
+        "arizaDaraja": "Educational process",
+        "arizaYonalish": "Educational direction",
         "MalumotJoylanmagan": "Information not posted!"
     }
 }
